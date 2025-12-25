@@ -5,13 +5,14 @@ FILE_NAME = "input.txt"
 
 
 def parse_input(input_file: str) -> list[tuple[str, str]]:
-    parsed_data: list = []
+    parsed_data = []
     with open(input_file) as f:
         for input in f:
             input_trimmed = input.strip("\n")
             match = re.match(r"([A-Za-z]+)(\d+)", input_trimmed)
             result = (match.group(1), match.group(2)) if match else None
-            parsed_data.append(result)
+            if result:
+                parsed_data.append(result)
     return parsed_data
 
 
@@ -53,4 +54,4 @@ def main2(rotations: list[tuple[str, str]], pointer: int = 50) -> int:
 
 if __name__ == "__main__":
     input = parse_input(FILE_NAME)
-    print(main2(input))
+    print(main1(input))
